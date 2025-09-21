@@ -18,6 +18,78 @@
 //! println!("timestamp: {timestamp:?}, active: {active:?}");
 //! # }
 //! ```
+//!
+//! Publish and subscribe to a custom event:
+//!
+//! ```no_run
+//!# async fn send_and_receive_custom_event() {
+//!# use std::time::{Duration, SystemTime};
+//!#
+//!# use anyhow::Context;
+//!# use easy_acap::{
+//!#     Event, EventBuilder, KeyValuePair, KeyValueSetBuilder, PublishableStructuredEvent, Runtime,
+//!#     StructuredEvent, SubscribableStructuredEvent,
+//!# };
+//!
+//! #[derive(Clone, Debug, Eq, PartialEq)]
+//! struct Greeting {
+//!     what: String,
+//!     when: SystemTime,
+//! }
+//!
+//! impl StructuredEvent for Greeting {
+//!     fn topic() -> KeyValueSetBuilder {
+//!         KeyValueSetBuilder::default()
+//!             .insert(
+//!                 KeyValuePair::new("topic0")
+//!                     .namespace("tnsaxis")
+//!                     .value("CameraApplicationPlatform"),
+//!             )
+//!             .insert(
+//!                 KeyValuePair::new("topic1")
+//!                     .namespace("tnsaxis")
+//!                     .value("SendAndReceiveEvents"),
+//!             )
+//!     }
+//! }
+//!
+//! impl PublishableStructuredEvent for Greeting {
+//!     fn schema() -> KeyValueSetBuilder {
+//!         KeyValueSetBuilder::default().insert(KeyValuePair::new("Greeting"))
+//!     }
+//!
+//!     fn into_event(self) -> EventBuilder {
+//!         let Self { what, when } = self;
+//!         EventBuilder::default()
+//!             .timestamp(when)
+//!             .insert(KeyValuePair::new("Greeting").value(what.as_str()))
+//!     }
+//! }
+//!
+//! impl SubscribableStructuredEvent for Greeting {
+//!     fn try_from(event: Event) -> anyhow::Result<Self> {
+//!         Ok(Self {
+//!             what: event
+//!                 .try_get_string("Greeting", None)?
+//!                 .context("Greeting was null")?,
+//!             when: event.timestamp(),
+//!         })
+//!     }
+//! }
+//!
+//! let mut runtime = Runtime::new();
+//! let mut subscriber = runtime.try_new_subscriber::<Greeting>().unwrap();
+//! let publisher = runtime.try_new_publisher::<Greeting>().await.unwrap();
+//!
+//! let expected = Greeting {
+//!     what: "Hello, world!".to_string(),
+//!     when: SystemTime::UNIX_EPOCH + Duration::from_secs(86400 + 7200 + 180 + 45),
+//! };
+//! publisher.publish(expected.clone()).unwrap();
+//! let actual = subscriber.recv().await.unwrap();
+//! assert_eq!(expected, actual);
+//!# }
+//! ```
 
 use std::{
     sync::{Arc, Weak},
