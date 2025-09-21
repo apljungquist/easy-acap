@@ -3,6 +3,8 @@
 //! > Make common things easy, rare things possible.
 //! > But not if they are silly.
 //!
+//! The entry point to this API is the [`Runtime`] type.
+//!
 //! # Examples
 //!
 //! Subscribe to virtual input events on port 0:
