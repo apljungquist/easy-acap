@@ -4,8 +4,11 @@ resolver = "2"
 
 [workspace.dependencies]
 anyhow = "1.0.99"
+axevent = { git = "https://github.com/AxisCommunications/acap-rs.git" }
+glib = "0.21.2"
 log = "0.4.27"
 rs4a-vapix = { git = "https://github.com/apljungquist/rs4acap.git" }
+tokio = "1.47.1"
 url = "2.5.7"
 
 [workspace.package]
