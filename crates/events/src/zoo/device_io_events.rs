@@ -1,3 +1,4 @@
+//! Events from topics starting with `Device/IO/`.
 use std::time::SystemTime;
 
 use anyhow::Context;

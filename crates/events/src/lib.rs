@@ -7,7 +7,7 @@
 //!
 //! # Examples
 //!
-//! Subscribe to virtual input events on port 0:
+//! ## Subscribe to virtual input events on port 0
 //!
 //! ```no_run
 //! # use easy_acap::{Runtime, zoo::device_io_events::VirtualInput};
@@ -19,19 +19,19 @@
 //! # }
 //! ```
 //!
-//! Publish and subscribe to a custom event:
+//! ## Publish a custom event
 //!
 //! ```no_run
-//!# async fn send_and_receive_custom_event() {
-//!# use std::time::{Duration, SystemTime};
-//!#
-//!# use anyhow::Context;
-//!# use easy_acap::{
-//!#     Event, EventBuilder, KeyValuePair, KeyValueSetBuilder, PublishableStructuredEvent, Runtime,
-//!#     StructuredEvent, SubscribableStructuredEvent,
-//!# };
-//!
-//! #[derive(Clone, Debug, Eq, PartialEq)]
+//! # async fn send_and_receive_custom_event() {
+//! # use std::time::{Duration, SystemTime};
+//! #
+//! # use anyhow::Context;
+//! # use easy_acap::{
+//! #     Event, EventBuilder, KeyValuePair, KeyValueSetBuilder, PublishableStructuredEvent, Runtime,
+//! #     StructuredEvent, SubscribableStructuredEvent,
+//! # };
+//! #
+//! # #[derive(Clone, Debug, Eq, PartialEq)]
 //! struct Greeting {
 //!     what: String,
 //!     when: SystemTime,
@@ -66,16 +66,16 @@
 //!     }
 //! }
 //!
-//! impl SubscribableStructuredEvent for Greeting {
-//!     fn try_from(event: Event) -> anyhow::Result<Self> {
-//!         Ok(Self {
-//!             what: event
-//!                 .try_get_string("Greeting", None)?
-//!                 .context("Greeting was null")?,
-//!             when: event.timestamp(),
-//!         })
-//!     }
-//! }
+//! # impl SubscribableStructuredEvent for Greeting {
+//! #     fn try_from(event: Event) -> anyhow::Result<Self> {
+//! #         Ok(Self {
+//! #             what: event
+//! #                 .try_get_string("Greeting", None)?
+//! #                 .context("Greeting was null")?,
+//! #             when: event.timestamp(),
+//! #         })
+//! #     }
+//! # }
 //!
 //! let mut runtime = Runtime::new();
 //! let mut subscriber = runtime.try_new_subscriber::<Greeting>().unwrap();
@@ -86,9 +86,9 @@
 //!     when: SystemTime::UNIX_EPOCH + Duration::from_secs(86400 + 7200 + 180 + 45),
 //! };
 //! publisher.publish(expected.clone()).unwrap();
-//! let actual = subscriber.recv().await.unwrap();
-//! assert_eq!(expected, actual);
-//!# }
+//! # let actual = subscriber.recv().await.unwrap();
+//! # assert_eq!(expected, actual);
+//! # }
 //! ```
 
 use std::{
