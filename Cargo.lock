@@ -842,7 +842,8 @@ dependencies = [
 [[package]]
 name = "rs4a-dut"
 version = "0.1.0"
-source = "git+https://github.com/apljungquist/rs4acap.git#8d0aa745fc9848f54caa7e2a5f3e07124e10b0a5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c89217dd26f613d91973cb00f9744ec83e71ed2e78ad77cce7a0cf48a80605c6"
 dependencies = [
  "anyhow",
  "dirs",
@@ -854,7 +855,8 @@ dependencies = [
 [[package]]
 name = "rs4a-vapix"
 version = "0.1.0"
-source = "git+https://github.com/apljungquist/rs4acap.git#8d0aa745fc9848f54caa7e2a5f3e07124e10b0a5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9acdfdad25cd66bd55133885cd855fe0bfa0b90f286d9de748e7a8a04c1405b5"
 dependencies = [
  "anyhow",
  "base64",

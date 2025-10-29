@@ -5,7 +5,7 @@ resolver = "2"
 [workspace.dependencies]
 anyhow = "1.0.99"
 log = "0.4.27"
-rs4a-vapix = { git = "https://github.com/apljungquist/rs4acap.git" }
+rs4a-vapix = "0.1.0"
 url = "2.5.7"
 
 [workspace.package]
