@@ -7,6 +7,10 @@ anyhow = "1.0.99"
 log = "0.4.27"
 rs4a-vapix = "0.1.0"
 url = "2.5.7"
+axevent = { git = "https://github.com/apljungquist/acap-rs.git", rev = "a9a6fb45ce690a07f0bdc89a4a0e28e071d2da17" }
+chrono = "0.4"
+serde = "1.0.228"
+serde_json = "1.0.149"
 
 [workspace.package]
 edition = "2021"
