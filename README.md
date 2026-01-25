@@ -14,6 +14,7 @@ _An opinionated framework for building ACAP apps with Rust._
 ## Components
 
 - `easy-acap-dirs`: Enumeration of directories commonly used by apps.
+- `easy-acap-events-catalog`: A collection of common events ready to be subscribed to.
 - `easy-acap-vapix`: Easy [_VAPIX access for ACAP applications_](https://developer.axis.com/acap/develop/VAPIX-access-for-ACAP-applications/).
 
 ## Related projects
