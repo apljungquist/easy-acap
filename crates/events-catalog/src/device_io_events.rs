@@ -2,6 +2,7 @@
 use std::time::SystemTime;
 
 /// Structured representation of a virtual input event
+#[derive(Debug)]
 pub struct VirtualInput<const N: u8> {
     pub timestamp: SystemTime,
     pub active: bool,

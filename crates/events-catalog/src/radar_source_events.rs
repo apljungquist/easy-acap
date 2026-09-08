@@ -27,10 +27,12 @@ impl FromStr for ClassType {
     }
 }
 
+#[derive(Debug)]
 pub struct MovementInAreaEvent {
     pub active: bool,
 }
 
+#[derive(Debug)]
 pub struct LineCrossing {
     pub channel_id: i32,
     pub track_id: i32,

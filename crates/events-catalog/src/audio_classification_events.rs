@@ -44,6 +44,7 @@ impl FromStr for Topic1 {
     }
 }
 
+#[derive(Debug)]
 pub struct AudioSource {
     pub device: u32,
     pub input: u32,
@@ -70,6 +71,7 @@ impl FromStr for AudioSource {
 
 /// This is a stateful event.
 /// [`AudioClassificationEvent::detected`] will be true while it is ongoing.
+#[derive(Debug)]
 pub struct AudioClassificationEvent {
     pub topic1: Topic1,
     pub detected: bool,

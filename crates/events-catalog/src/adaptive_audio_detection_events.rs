@@ -33,6 +33,7 @@ impl FromStr for Topic1 {
     }
 }
 
+#[derive(Debug)]
 pub struct AdaptiveAudioDetectionEvent {
     pub topic1: Topic1,
     pub detected: bool,
