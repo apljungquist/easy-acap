@@ -2,6 +2,10 @@
 
 _An opinionated framework for building ACAP apps with Rust._
 
+> [!NOTE]
+> `easy-acap-dirs` hasn't changed in a year, and is being used on closed source projects.
+> That said, readers should consider crates by this project experimental.
+
 ## Table of Contents
 
 - [Components](#components)
